@@ -1,0 +1,23 @@
+/*This simple JAVA program demonstrates how to create a HTTP Server using JAVA. After completing the program, you can access the server you just created using Internet Explorer, Firefox, etc. 
+First, import the following (ServerSocket and Socket) in preparation for the server
+Instantiate a ServerSocket so you can create a server that accept requests. Print out some instructions to guide your users through the access process
+Make an infinite while loop so that the server runs for the durations that the program is running
+Accepts any incoming connections through the accept method
+The server will response (a.k.a. display response on screen) through the write() method with the a string (httpResponse) you've created.
+Reminder: The server will only allow one connection per time - remember to close the operating window after each run*/
+
+import java.io.IOException; 
+import java.net.ServerSocket; 
+import java.net.Socket; 
+public class HTTP_Server { 
+	public static void main(String args[]) throws IOException { 
+		ServerSocket server = new ServerSocket(8080); 
+		System.out.println("Go to http://localhost:8080 in your browser"); 
+		while (true) { 
+			try (Socket socket = server.accept()) { 
+			String httpResponse = "HTTP/1.1 200 OK\r\n\r\n" + "Congrats!!! You've made your first http server!!! =)"; 
+			socket.getOutputStream().write(httpResponse.getBytes("UTF-8")); 
+				} 
+			} 
+	} 
+}
